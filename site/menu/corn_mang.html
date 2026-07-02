@@ -1,0 +1,104 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d2b">
+  <meta name="description" content="A concise field guide to common rust, northern corn leaf blight, and gray leaf spot.">
+  <title>CornLeaf field guide</title>
+  <link rel="stylesheet" href="../styles.css?v=6">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="../index.html"><img src="../logo.png" alt="" width="44" height="44"><span>CornLeaf</span></a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link" href="../index.html">Scan</a>
+      <a class="nav-link active" href="corn_mang.html" aria-current="page">Field guide</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="guide-hero">
+      <p class="eyebrow">Visual identification guide</p>
+      <h1>Look twice.<br><em>Treat once.</em></h1>
+      <p>Several corn diseases look alike in early stages. Compare the shape, color, leaf position, and weather pattern—not just one spot.</p>
+    </section>
+
+    <section class="guide-grid" aria-label="Supported corn leaf conditions">
+      <article class="disease-card" id="common-rust">
+        <span class="card-number">01 · FUNGAL</span>
+        <h2>Common rust</h2>
+        <p class="latin">Puccinia sorghi</p>
+        <figure class="guide-photo">
+          <img src="../images/common-rust.jpg" alt="Raised reddish-brown common rust pustules scattered across a corn leaf" width="1280" height="807" loading="lazy">
+          <figcaption><span>Photo example</span><a href="https://commons.wikimedia.org/wiki/File:Puccinia_sorghi_Schwein._5465568.jpg" target="_blank" rel="noreferrer">Daren Mueller, Iowa State University · CC BY 3.0 US</a></figcaption>
+        </figure>
+        <h3>What to look for</h3>
+        <p>Raised, cinnamon-brown to dark-brown pustules scattered on both sides of the leaf. The powdery spores may rub off.</p>
+        <h3>Favorable conditions</h3>
+        <p>Cool, wet weather, heavy dew, and long periods of high humidity. Hot conditions can slow development.</p>
+        <h3>Practical first steps</h3>
+        <ul><li>Compare both leaf surfaces.</li><li>Check the hybrid’s resistance rating.</li><li>Scout new growth and track whether symptoms are spreading.</li><li>Ask a local crop adviser whether treatment is economically warranted.</li></ul>
+        <a class="source-link" href="https://extension.umn.edu/corn-pest-management/common-rust-corn" target="_blank" rel="noreferrer">University of Minnesota Extension source →</a>
+      </article>
+
+      <article class="disease-card" id="gray-leaf-spot">
+        <span class="card-number">02 · FUNGAL</span>
+        <h2>Gray leaf spot</h2>
+        <p class="latin">Cercospora zeae-maydis</p>
+        <figure class="guide-photo">
+          <img src="../images/gray-leaf-spot.png" alt="Numerous narrow gray and tan lesions on a corn leaf affected by gray leaf spot" width="757" height="546" loading="lazy">
+          <figcaption><span>Photo example</span><a href="https://commons.wikimedia.org/wiki/File:Gray_leaf_spot_Cercospora_zeae-maydis_5465607.png" target="_blank" rel="noreferrer">Daren Mueller, Iowa State University · CC BY 3.0 US</a></figcaption>
+        </figure>
+        <h3>What to look for</h3>
+        <p>Gray-to-brown rectangular lesions with straight, parallel sides. Mature lesions are usually restricted by the leaf veins.</p>
+        <h3>Favorable conditions</h3>
+        <p>Warm temperatures with extended high humidity or leaf wetness. Risk increases where infected corn residue remains.</p>
+        <h3>Practical first steps</h3>
+        <ul><li>Inspect lower leaves first.</li><li>Use resistant or tolerant hybrids.</li><li>Consider crop rotation and residue management for future seasons.</li><li>Base any fungicide decision on disease pressure, crop stage, weather, and local guidance.</li></ul>
+        <a class="source-link" href="https://extension.umn.edu/corn-pest-management/gray-leaf-spot-corn" target="_blank" rel="noreferrer">University of Minnesota Extension source →</a>
+      </article>
+
+      <article class="disease-card" id="blight">
+        <span class="card-number">03 · FUNGAL</span>
+        <h2>Northern leaf blight</h2>
+        <p class="latin">Exserohilum turcicum</p>
+        <figure class="guide-photo">
+          <img src="../images/northern-leaf-blight.jpg" alt="Corn plants with long tan northern leaf blight lesions spreading across their leaves" width="1280" height="960" loading="lazy">
+          <figcaption><span>Photo example</span><a href="https://commons.wikimedia.org/wiki/File:Northern_corn_leaf_blight.JPG" target="_blank" rel="noreferrer">Chroanch · CC BY-SA 4.0</a></figcaption>
+        </figure>
+        <h3>What to look for</h3>
+        <p>Long, tan, canoe- or cigar-shaped lesions with smooth rounded ends. Lesions often begin on lower leaves and move upward.</p>
+        <h3>Favorable conditions</h3>
+        <p>Moderate temperatures and prolonged moisture. Earlier infection can be more damaging on susceptible hybrids.</p>
+        <h3>Practical first steps</h3>
+        <ul><li>Check several plants across the field.</li><li>Review the hybrid’s disease rating.</li><li>Use rotation and residue management where appropriate.</li><li>Confirm before applying a fungicide; timing and crop stage matter.</li></ul>
+        <a class="source-link" href="https://extension.umn.edu/corn-pest-management/northern-corn-leaf-blight" target="_blank" rel="noreferrer">University of Minnesota Extension source →</a>
+      </article>
+
+      <article class="disease-card" id="healthy">
+        <span class="card-number">04 · NO STRONG MATCH</span>
+        <h2>Healthy-looking leaf</h2>
+        <p class="latin">Monitor rather than assume</p>
+        <figure class="guide-photo">
+          <img src="../demo-leaf.jpg" alt="Close-up example of a healthy green corn leaf" width="256" height="256" loading="lazy">
+          <figcaption><span>Photo example</span><a href="https://huggingface.co/eligapris/maize-diseases-detection" target="_blank" rel="noreferrer">eligapris maize model repository · MIT</a></figcaption>
+        </figure>
+        <h3>What to look for</h3>
+        <p>Even green tissue without spreading lesions, powdery pustules, major chlorosis, or dead areas. Normal leaves can still show minor physical damage.</p>
+        <h3>Keep monitoring</h3>
+        <p>A “healthy” model result only means the photo did not strongly resemble the three supported diseases. Nutrient problems, insects, other diseases, and very early symptoms are outside this detector’s scope.</p>
+        <h3>Practical first steps</h3>
+        <ul><li>Recheck the same plants after several days.</li><li>Photograph both sides of suspicious leaves.</li><li>Seek local advice if symptoms spread, affect yield-critical leaves, or remain unclear.</li></ul>
+      </article>
+    </section>
+
+    <aside class="guide-warning">
+      <h2>Before acting on a result</h2>
+      <p>Weather, cultivar, crop stage, and local regulations change the right response. Never apply a pesticide from an AI result alone; confirm the disease and follow the product label and local agricultural guidance.</p>
+    </aside>
+  </main>
+
+  <footer class="site-footer"><p>Evidence-led field notes for the detector’s four classes.</p><p>App built by <strong>Mark Daniel G. Dacer, MSIT</strong> · Researched by <strong>Dr. Jovilen Lapates</strong>.</p><p><a href="../index.html">Scan another leaf →</a></p></footer>
+</body>
+</html>

@@ -1,0 +1,145 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="theme-color" content="#173d2b">
+  <meta name="description" content="Private, on-device corn leaf disease screening for common rust, gray leaf spot, northern leaf blight, and healthy leaves.">
+  <title>CornLeaf — On-device disease screening</title>
+  <link rel="manifest" href="./manifest.json">
+  <link rel="icon" href="./logo.png">
+  <link rel="stylesheet" href="./styles.css?v=6">
+</head>
+<body>
+  <header class="site-header">
+    <a class="brand" href="./index.html" aria-label="CornLeaf home">
+      <img src="./logo.png" alt="" width="44" height="44">
+      <span>CornLeaf</span>
+    </a>
+    <nav aria-label="Main navigation">
+      <a class="nav-link active" href="./index.html" aria-current="page">Scan</a>
+      <a class="nav-link" href="./menu/corn_mang.html">Field guide</a>
+    </nav>
+  </header>
+
+  <main>
+    <section class="hero">
+      <div>
+        <p class="eyebrow">Private · on-device AI</p>
+        <h1>Check a corn leaf<br><em>in seconds.</em></h1>
+        <p class="hero-copy">Frame one leaf in good, even light. Your photo stays on this device—there is no upload and no account.</p>
+      </div>
+      <div class="model-status" id="modelStatus" role="status" aria-live="polite">
+        <span class="status-dot" aria-hidden="true"></span>
+        <span id="modelStatusText">Preparing detector…</span>
+      </div>
+    </section>
+
+    <section class="scanner" aria-labelledby="scannerTitle">
+      <div class="camera-panel">
+        <div class="panel-heading">
+          <div>
+            <p class="step-label">01 · Add a leaf photo</p>
+            <h2 id="scannerTitle">Center the affected leaf</h2>
+          </div>
+          <button class="icon-button" id="switchCamera" type="button" hidden aria-label="Switch camera" title="Switch camera">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 7h-3.2l-1.5-2H8.7L7.2 7H4a2 2 0 0 0-2 2v9a2 2 0 0 0 2 2h16a2 2 0 0 0 2-2V9a2 2 0 0 0-2-2Zm-8 10a4 4 0 1 1 0-8 4 4 0 0 1 0 8Zm3.2-5.6-1.1.3a2.3 2.3 0 0 0-3.8-.7l-1-.8A3.6 3.6 0 0 1 15.2 11.4Zm-6.4 1.2 1.1-.3a2.3 2.3 0 0 0 3.8.7l1 .8a3.6 3.6 0 0 1-5.9-1.2Z"/></svg>
+          </button>
+        </div>
+
+        <div class="camera-stage" id="cameraStage">
+          <video id="webcam" autoplay muted playsinline hidden></video>
+          <canvas id="snapshot" width="300" height="300" hidden aria-label="Selected corn leaf image"></canvas>
+          <div class="camera-empty" id="cameraEmpty">
+            <svg viewBox="0 0 64 64" aria-hidden="true"><path d="M52 14H41l-4-5H27l-4 5H12a7 7 0 0 0-7 7v28a7 7 0 0 0 7 7h40a7 7 0 0 0 7-7V21a7 7 0 0 0-7-7ZM32 48a13 13 0 1 1 0-26 13 13 0 0 1 0 26Zm0-5a8 8 0 1 0 0-16 8 8 0 0 0 0 16Z"/></svg>
+            <strong>No photo yet</strong>
+            <span>Use your camera or choose an existing photo.</span>
+          </div>
+          <div class="frame-guide" id="frameGuide" hidden aria-hidden="true"></div>
+        </div>
+
+        <div class="camera-options">
+          <label class="select-wrap" for="cameraSelect">
+            <span>Camera</span>
+            <select id="cameraSelect" disabled>
+              <option value="">Rear camera</option>
+            </select>
+          </label>
+        </div>
+
+        <div class="action-row">
+          <button class="button secondary" id="startCamera" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5h-3.2l-1.4-2H8.6L7.2 5H4a3 3 0 0 0-3 3v10a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3Zm-8 13a5 5 0 1 1 0-10 5 5 0 0 1 0 10Z"/></svg>
+            Start camera
+          </button>
+          <label class="button secondary file-button" for="photoInput">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M20 5h-8.6L9.7 3H4a3 3 0 0 0-3 3v12a3 3 0 0 0 3 3h16a3 3 0 0 0 3-3V8a3 3 0 0 0-3-3Zm-1 12-4.5-5.5-3.2 3.8-2-2.3L5 18h14v-1Z"/></svg>
+            Choose photo
+          </label>
+          <input id="photoInput" type="file" accept="image/*" capture="environment" hidden>
+          <button class="button secondary" id="samplePhoto" type="button">
+            <svg viewBox="0 0 24 24" aria-hidden="true"><path d="M12 2a10 10 0 1 0 10 10A10 10 0 0 0 12 2Zm1.1 14.9h-2.2v-2.2h2.2Zm2.3-6.3-.9.9a2.2 2.2 0 0 0-.6 1.5v.5h-3v-.7a3.7 3.7 0 0 1 1.1-2.6l1.2-1.3a1.5 1.5 0 0 0 .4-1 1.6 1.6 0 0 0-3.1-.4l-2.7-1.1A4.5 4.5 0 0 1 12.1 4a4.4 4.4 0 0 1 4.5 4.2 3.4 3.4 0 0 1-1.2 2.4Z"/></svg>
+            Try demo
+          </button>
+        </div>
+
+        <button class="button primary analyze-button" id="analyzeButton" type="button" disabled>
+          <span>Analyze leaf</span>
+          <svg viewBox="0 0 24 24" aria-hidden="true"><path d="m13.2 5.2 5.4 5.3H3v3h15.6l-5.4 5.3 2.1 2.2L24 12l-8.7-9-2.1 2.2Z"/></svg>
+        </button>
+        <p class="camera-message" id="cameraMessage" role="status" aria-live="polite">The detector can work with a live camera or a saved photo.</p>
+      </div>
+
+      <aside class="result-panel" id="resultPanel" aria-labelledby="resultTitle">
+        <div class="result-placeholder" id="resultPlaceholder">
+          <p class="step-label">02 · Screening result</p>
+          <div class="placeholder-mark" aria-hidden="true">?</div>
+          <h2 id="resultTitle">Your result will appear here</h2>
+          <p>We’ll show the strongest supported match—or flag another object or unclear image.</p>
+          <ul class="photo-tips">
+            <li>Use one leaf at a time</li>
+            <li>Fill most of the frame</li>
+            <li>Avoid blur and harsh shadows</li>
+          </ul>
+        </div>
+
+        <div class="result-content" id="resultContent" hidden>
+          <p class="step-label">02 · Screening result</p>
+          <div class="result-topline">
+            <span class="result-icon" id="resultIcon" aria-hidden="true"></span>
+            <span class="confidence-badge" id="confidenceBadge"></span>
+          </div>
+          <p class="result-kicker" id="resultKicker"></p>
+          <h2 id="resultName"></h2>
+          <p class="result-summary" id="resultSummary"></p>
+
+          <div class="probabilities" id="probabilities" aria-label="All model probabilities"></div>
+
+          <a class="guide-link" id="guideLink" href="./menu/corn_mang.html">
+            Open identification guide
+            <span aria-hidden="true">→</span>
+          </a>
+          <p class="disclaimer">AI screening is not a laboratory diagnosis. Confirm uncertain or high-impact results with a local crop specialist before treatment.</p>
+        </div>
+      </aside>
+    </section>
+
+    <section class="trust-strip" aria-label="About this detector">
+      <div><strong>4 + other</strong><span>supported classes with rejection</span></div>
+      <div><strong>Local</strong><span>photos never leave</span></div>
+      <div><strong>MIT</strong><span>open model license</span></div>
+    </section>
+  </main>
+
+  <footer class="site-footer">
+    <p>Built for field screening, not final diagnosis.</p>
+    <p>App built by <strong>Mark Daniel G. Dacer, MSIT</strong> · Researched by <strong>Dr. Jovilen Lapates</strong>.</p>
+    <p><a href="https://huggingface.co/eligapris/maize-diseases-detection" target="_blank" rel="noreferrer">Model by eligapris</a> · <a href="./THIRD_PARTY_NOTICES.md">Licenses</a></p>
+  </footer>
+
+  <button class="install-prompt" id="installButton" type="button" hidden>Install CornLeaf</button>
+
+  <script src="https://cdn.jsdelivr.net/npm/onnxruntime-web@1.27.0/dist/ort.wasm.min.js" crossorigin="anonymous"></script>
+  <script src="./app.js?v=7"></script>
+</body>
+</html>

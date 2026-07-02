@@ -1,0 +1,21 @@
+{
+  "id": "./",
+  "name": "CornLeaf Disease Screening",
+  "short_name": "CornLeaf",
+  "description": "Private, on-device corn leaf disease screening.",
+  "start_url": "./",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait-primary",
+  "background_color": "#f5f2e8",
+  "theme_color": "#173d2b",
+  "categories": ["education", "utilities"],
+  "icons": [
+    {
+      "src": "./logo.png",
+      "sizes": "287x287",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ]
+}
