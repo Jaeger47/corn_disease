@@ -1,5 +1,7 @@
 # CornLeaf
 
+https://buksu-corn-ai.netlify.app/menu/corn_mang
+
 Private, on-device corn leaf disease screening. The production app downloads
 its versioned ONNX model from this public repository through jsDelivr, then
 runs inference locally in the browser. Photos are not uploaded.
